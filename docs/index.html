@@ -40,7 +40,7 @@
 
     <style>
       :root {
-        --bg: #fafafa;
+        --bg: #ffffff;
         --surface: #ffffff;
         --text-main: #111827;
         --text-muted: #4b5563;
@@ -72,19 +72,11 @@
         line-height: 1.65;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
-        background-size: 24px 24px;
-        background-position: 0 0;
       }
 
       .page-backdrop {
         min-height: 100vh;
-        background: linear-gradient(
-          180deg,
-          rgba(250, 250, 250, 0.65) 0%,
-          rgba(250, 250, 250, 0.96) 320px,
-          var(--bg) 100%
-        );
+        background: var(--bg);
       }
 
       .container {
@@ -131,7 +123,7 @@
         flex-wrap: wrap;
         justify-content: center;
         gap: 0.5rem 2rem;
-        font-size: 1rem;
+        font-size: 1.125rem;
         font-weight: 500;
         margin-bottom: 0.75rem;
       }
@@ -153,7 +145,7 @@
         gap: 0.25rem 1.5rem;
         margin-bottom: 1.5rem;
         color: var(--text-muted);
-        font-size: 0.925rem;
+        font-size: 1rem;
       }
 
       .author-item a {
@@ -310,6 +302,43 @@
         height: auto;
       }
 
+      .overview-figure figcaption {
+        max-width: 780px;
+        margin: 1rem auto 0;
+        color: var(--text-muted);
+        font-size: 0.875rem;
+        line-height: 1.7;
+      }
+
+      .content-section {
+        max-width: 780px;
+        margin: 0 auto 3.5rem;
+      }
+
+      .content-section h2 {
+        margin-bottom: 1.25rem;
+        text-align: center;
+        font-size: clamp(1.3rem, 3vw, 1.625rem);
+        font-weight: 600;
+        line-height: 1.3;
+        letter-spacing: -0.02em;
+      }
+
+      .content-section p {
+        color: var(--text-muted);
+        line-height: 1.8;
+      }
+
+      .content-section p + p {
+        margin-top: 1rem;
+      }
+
+      .content-section strong,
+      .overview-figure strong {
+        color: var(--text-main);
+        font-weight: 600;
+      }
+
       /* Divider */
       .section-divider {
         height: 1px;
@@ -323,7 +352,7 @@
         }
         .authors-list {
           gap: 0.4rem 1.25rem;
-          font-size: 0.9375rem;
+          font-size: 1.0625rem;
         }
         .btn {
           padding: 0.55rem 1.1rem;
@@ -345,15 +374,14 @@
 
           <div class="authors-list">
             <span class="author-item">
-              <a href="#" target="_blank" rel="noopener noreferrer">
+              <a href="https://axr2718.github.io" target="_blank" rel="noopener noreferrer">
                 Adrian Rodriguez</a><sup>1</sup>
             </span>
             <span class="author-item">
-              <a href="#" target="_blank" rel="noopener noreferrer">
-                Angelica Kim</a><sup>2</sup>
+              Angelica Kim<sup>2</sup>
             </span>
             <span class="author-item">
-              <a href="#" target="_blank" rel="noopener noreferrer">
+              <a href="https://yunhuiguo.github.io" target="_blank" rel="noopener noreferrer">
                 Yunhui Guo</a><sup>1</sup>
             </span>
             <span class="author-item">
@@ -432,9 +460,43 @@
             height="1063"
             alt="Energy Minimization Search unifies reasoning and planning through a fixed energy landscape. Reasoning examples include graph coloring, N-Queens, and crossword puzzles; planning examples include shortest path finding, maze solving, and trajectory stitching."
           />
+          <figcaption>
+            <strong>Unifying reasoning and planning through energy minimization.</strong>
+            EMS learns a time-independent energy function for each task and refines
+            candidate assignments or trajectories on the resulting landscape. The
+            white dot represents an initial candidate solution; the arrows illustrate
+            successive refinement toward a low-energy solution, showing how a problem
+            is solved by minimizing the candidate's energy.
+          </figcaption>
         </figure>
 
         <div class="section-divider"></div>
+
+        <section class="content-section" aria-labelledby="shared-search-title">
+          <h2 id="shared-search-title">Reasoning and planning share a search problem</h2>
+          <p>
+            A valid graph coloring must assign different colors to adjacent nodes.
+            A valid plan must connect a start and goal while respecting the
+            environment. Although their solutions look different, both problems
+            involve <strong>proposing candidates, evaluating how well they satisfy
+            the problem conditions, and refining them.</strong>
+          </p>
+          <p>
+            An energy-based model supports both evaluation and refinement:
+            <strong>energy values score candidates, and energy gradients guide
+            their improvement.</strong> When a problem decomposes into local
+            constraints, their energies can be summed into a shared objective.
+            This lets us learn what makes a solution compatible with a problem,
+            then choose how to search for it at inference time.
+          </p>
+          <p>
+            EMS brings this approach to reasoning and planning with a shared
+            training objective and energy-minimization formulation. Each task has
+            its own trained model, while the search method and budget can be
+            changed without retraining it. Additional computation can go toward
+            refining candidates longer or exploring more candidate solutions.
+          </p>
+        </section>
       </main>
     </div>
   </body>
