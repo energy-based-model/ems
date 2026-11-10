@@ -115,13 +115,6 @@
         margin-bottom: 1.5rem;
       }
 
-      .venue-dot {
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        background: var(--accent);
-      }
-
       .paper-title {
         font-size: clamp(2.1rem, 4.5vw, 3.25rem);
         font-weight: 600;
@@ -225,24 +218,23 @@
       }
 
       .tldr {
-        max-width: 780px;
-        margin: 0 auto 3rem;
-        padding: 1.5rem 1.75rem;
+        margin: 0 auto 1.5rem;
+        padding: 2rem;
         background: var(--surface);
         border: 1px solid var(--border);
         border-radius: var(--radius-md);
       }
 
       .tldr h2 {
-        margin-bottom: 0.5rem;
-        font-size: 0.875rem;
+        margin-bottom: 0.75rem;
+        font-size: 1.125rem;
         font-weight: 700;
         letter-spacing: 0.04em;
         color: var(--accent);
       }
 
       .tldr p {
-        font-size: 1.0625rem;
+        font-size: clamp(1.125rem, 2.5vw, 1.25rem);
         line-height: 1.75;
         color: var(--text-muted);
       }
@@ -250,6 +242,53 @@
       .tldr strong {
         color: var(--text-main);
         font-weight: 600;
+      }
+
+      .abstract {
+        margin-bottom: 3rem;
+        padding: 1.25rem 2rem;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+      }
+
+      .abstract summary {
+        cursor: pointer;
+        font-size: 1.125rem;
+        font-weight: 600;
+      }
+
+      .abstract summary::marker {
+        color: var(--accent);
+      }
+
+      .abstract summary:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 6px;
+        border-radius: 2px;
+      }
+
+      .abstract-hint {
+        margin-left: 0.5rem;
+        color: var(--text-subtle);
+        font-size: 0.875rem;
+        font-weight: 400;
+      }
+
+      .abstract .when-open,
+      .abstract[open] .when-closed {
+        display: none;
+      }
+
+      .abstract[open] .when-open {
+        display: inline;
+      }
+
+      .abstract p {
+        margin-top: 1rem;
+        color: var(--text-muted);
+        font-size: 1rem;
+        line-height: 1.8;
       }
 
       /* Divider */
@@ -271,7 +310,8 @@
           padding: 0.55rem 1.1rem;
           font-size: 0.875rem;
         }
-        .tldr {
+        .tldr,
+        .abstract {
           padding: 1.25rem;
         }
       }
@@ -310,7 +350,6 @@
           </div>
 
           <div class="venue-badge">
-            <span class="venue-dot" aria-hidden="true"></span>
             NeurIPS 2026
           </div>
 
@@ -336,9 +375,40 @@
             <strong>EMS learns a fixed energy landscape for each task and solves
             problems by searching it.</strong> The same training framework supports
             reasoning and planning, with additional inference compute allocated to
-            more refinement steps or more candidate solutions.
+            more refinement steps or more candidate solutions. On reasoning
+            benchmarks, EMS matches or outperforms the evaluated diffusion-based
+            EBM baselines in solution quality with substantially fewer model
+            evaluations.
           </p>
         </section>
+
+        <details class="abstract">
+          <summary>
+            Abstract
+            <span class="abstract-hint when-closed">Click to expand</span>
+            <span class="abstract-hint when-open">Click to collapse</span>
+          </summary>
+          <p>
+            Neural networks often struggle to solve reasoning and planning problems
+            more complex than those encountered during training. Energy-based
+            models offer a natural approach to this challenge by learning objectives
+            that can be optimized with additional computation. However, existing
+            methods rely on specialized training and inference procedures, from
+            differentiating through iterative optimization to annealing across
+            noise-dependent energy landscapes. We introduce <em>Energy Minimization
+            Search</em> (EMS), a unified framework for reasoning and planning through
+            a shared training objective and time-invariant energy minimization. EMS
+            combines Equilibrium Matching with contrastive supervision to learn an
+            energy function for each task, using the energy values to evaluate
+            candidates and energy gradients to guide refinement. At inference time,
+            we search on this fixed landscape, allocating additional computation to
+            more refinement steps or candidate solutions. Across graph coloring,
+            N-Queens, 3-SAT, crosswords, path finding, and maze navigation, EMS
+            achieves competitive or improved solution quality relative to baselines,
+            with substantially fewer function evaluations than the diffusion-based
+            EBM reasoning baselines.
+          </p>
+        </details>
 
         <div class="section-divider"></div>
       </main>
