@@ -243,7 +243,8 @@
         color: var(--text-muted);
       }
 
-      .tldr strong {
+      .tldr strong,
+      .abstract strong {
         color: var(--text-main);
         font-weight: 600;
       }
@@ -297,6 +298,16 @@
         color: var(--text-muted);
         font-size: 0.9375rem;
         line-height: 1.75;
+      }
+
+      .overview-figure {
+        margin: 0 auto 3rem;
+      }
+
+      .overview-figure img {
+        display: block;
+        width: 100%;
+        height: auto;
       }
 
       /* Divider */
@@ -379,8 +390,8 @@
         <section class="tldr" aria-labelledby="tldr-title">
           <h2 id="tldr-title">TL;DR</h2>
           <p>
-            <strong>EMS learns a fixed energy landscape for each task and solves
-            problems by searching it.</strong> The same training framework supports
+            <strong>Energy Minimization Search (EMS)</strong> learns a fixed energy
+            landscape for each task and solves problems by searching it. The same training framework supports
             reasoning and planning, with additional inference compute allocated to
             more refinement steps or more candidate solutions. On reasoning
             benchmarks, EMS matches or outperforms the evaluated diffusion-based
@@ -400,8 +411,8 @@
             that can be optimized with additional computation. However, existing
             methods rely on specialized training and inference procedures, from
             differentiating through iterative optimization to annealing across
-            noise-dependent energy landscapes. We introduce <em>Energy Minimization
-            Search</em> (EMS), a unified framework for reasoning and planning through
+            noise-dependent energy landscapes. We introduce <strong>Energy Minimization
+            Search (EMS)</strong>, a unified framework for reasoning and planning through
             a shared training objective and time-invariant energy minimization. EMS
             combines Equilibrium Matching with contrastive supervision to learn an
             energy function for each task, using the energy values to evaluate
@@ -414,6 +425,15 @@
             EBM reasoning baselines.
           </p>
         </details>
+
+        <figure class="overview-figure">
+          <img
+            src="images/fig1.png"
+            width="2400"
+            height="1063"
+            alt="Energy Minimization Search unifies reasoning and planning through a fixed energy landscape. Reasoning examples include graph coloring, N-Queens, and crossword puzzles; planning examples include shortest path finding, maze solving, and trajectory stitching."
+          />
+        </figure>
 
         <div class="section-divider"></div>
       </main>
