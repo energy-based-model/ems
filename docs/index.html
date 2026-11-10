@@ -345,6 +345,13 @@
         height: auto;
       }
 
+      .reasoning-animation {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin-bottom: 1.25rem;
+      }
+
       .content-section strong,
       .overview-figure strong {
         color: var(--text-main);
@@ -515,7 +522,15 @@
         </section>
 
         <section class="content-section" aria-labelledby="reasoning-title">
-          <h2 id="reasoning-title">Reasoning Results</h2>
+          <h2 id="reasoning-title">Reasoning</h2>
+          <img
+            class="reasoning-animation"
+            src="images/reasoning_refinement.gif"
+            width="1500"
+            height="590"
+            loading="lazy"
+            alt="Animated refinement of candidate solutions to reasoning tasks using Energy Minimization Search."
+          />
           <p>
             We evaluate EMS on <strong>graph coloring, N-Queens, 3-SAT, and
             crosswords</strong>, composing learned local energies to search for
