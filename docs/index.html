@@ -502,7 +502,7 @@
         <section class="tldr" aria-labelledby="tldr-title">
           <h2 id="tldr-title">TL;DR</h2>
           <p>
-            <strong>Energy Minimization Search (EMS)</strong> learns a fixed energy
+            <strong>Energy Minimization Search (EMS)</strong> learns a single fixed energy
             landscape for each task and solves problems by searching it. The same training framework supports
             reasoning and planning, with additional inference compute allocated to
             more refinement steps or more candidate solutions. On reasoning benchmarks, EMS matches or outperforms the evaluated diffusion-based
@@ -651,10 +651,8 @@
             </picture>
             <figcaption>
               Graph results measure first-action accuracy, not complete-path execution.
-              EMS uses eight candidates and 1,848 total model evaluations, versus one
-              candidate and 110 evaluations for IRED. Maze results report mean success
-              across five seeds, with standard-deviation error bars; DD denotes
-              Decision Diffuser. Full settings are in the paper.
+              Maze results report mean success
+              across five seeds, with standard-deviation error bars. Full results are in the paper.
             </figcaption>
           </figure>
         </section>
