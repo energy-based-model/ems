@@ -149,15 +149,15 @@
       }
 
       .author-item a {
-        color: var(--text-main);
+        color: var(--accent);
         text-decoration: none;
         border-bottom: 1.5px solid transparent;
         transition: color 0.15s ease, border-color 0.15s ease;
       }
 
       .author-item a:hover {
-        color: var(--accent);
-        border-bottom-color: var(--accent);
+        color: var(--accent-hover);
+        border-bottom-color: var(--accent-hover);
       }
 
       /* Action Buttons */
@@ -333,6 +333,16 @@
         margin-top: 1rem;
       }
 
+      .method-section {
+        max-width: none;
+      }
+
+      .method-section img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
       .content-section strong,
       .overview-figure strong {
         color: var(--text-main);
@@ -475,27 +485,23 @@
         <section class="content-section" aria-labelledby="shared-search-title">
           <h2 id="shared-search-title">Reasoning and planning share a search problem</h2>
           <p>
-            A valid graph coloring must assign different colors to adjacent nodes.
-            A valid plan must connect a start and goal while respecting the
-            environment. Although their solutions look different, both problems
-            involve <strong>proposing candidates, evaluating how well they satisfy
-            the problem conditions, and refining them.</strong>
+            Reasoning and planning both require finding solutions that satisfy
+            problem conditions. EMS learns an energy function for each task:
+            <strong>energy values score candidates, while gradients guide their
+            refinement.</strong> The same training framework supports both domains,
+            and the search method and compute budget can change without retraining.
           </p>
-          <p>
-            An energy-based model supports both evaluation and refinement:
-            <strong>energy values score candidates, and energy gradients guide
-            their improvement.</strong> When a problem decomposes into local
-            constraints, their energies can be summed into a shared objective.
-            This lets us learn what makes a solution compatible with a problem,
-            then choose how to search for it at inference time.
-          </p>
-          <p>
-            EMS brings this approach to reasoning and planning with a shared
-            training objective and energy-minimization formulation. Each task has
-            its own trained model, while the search method and budget can be
-            changed without retraining it. Additional computation can go toward
-            refining candidates longer or exploring more candidate solutions.
-          </p>
+        </section>
+
+        <section class="content-section method-section" aria-labelledby="method-title">
+          <h2 id="method-title">Method</h2>
+          <img
+            src="images/method.gif"
+            width="990"
+            height="375"
+            loading="lazy"
+            alt="Animated overview of the Energy Minimization Search method."
+          />
         </section>
       </main>
     </div>
