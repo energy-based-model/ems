@@ -304,7 +304,9 @@
         margin: 0 auto;
       }
 
-      .overview-figure figcaption {
+      .overview-figure figcaption,
+      .reasoning-figure figcaption,
+      .method-section figcaption {
         max-width: 780px;
         margin: 1rem auto 0;
         color: var(--text-muted);
@@ -349,6 +351,9 @@
         display: block;
         width: 100%;
         height: auto;
+      }
+
+      .reasoning-figure {
         margin-bottom: 1.25rem;
       }
 
@@ -523,14 +528,22 @@
 
         <section class="content-section" aria-labelledby="reasoning-title">
           <h2 id="reasoning-title">Reasoning</h2>
-          <img
-            class="reasoning-animation"
-            src="images/reasoning_refinement.gif"
-            width="1500"
-            height="590"
-            loading="lazy"
-            alt="Animated refinement of candidate solutions to reasoning tasks using Energy Minimization Search."
-          />
+          <figure class="reasoning-figure">
+            <img
+              class="reasoning-animation"
+              src="images/reasoning_refinement.gif"
+              width="1500"
+              height="590"
+              loading="lazy"
+              alt="Animated refinement of candidate solutions to reasoning tasks using Energy Minimization Search."
+            />
+            <figcaption>
+              <strong>Reasoning through energy minimization.</strong> As energy
+              decreases, EMS iteratively refines candidate solutions toward
+              low-energy minima corresponding to valid solutions. A problem is
+              solved when the refined candidate satisfies its constraints.
+            </figcaption>
+          </figure>
           <p>
             We evaluate EMS on <strong>graph coloring, N-Queens, 3-SAT, and
             crosswords</strong>, composing learned local energies to search for
@@ -542,13 +555,26 @@
 
         <section class="content-section method-section" aria-labelledby="method-title">
           <h2 id="method-title">Method</h2>
-          <img
-            src="images/method.gif"
-            width="990"
-            height="375"
-            loading="lazy"
-            alt="Animated overview of the Energy Minimization Search method."
-          />
+          <figure>
+            <img
+              src="images/method.gif"
+              width="990"
+              height="375"
+              loading="lazy"
+              alt="Animated overview of the Energy Minimization Search method."
+            />
+            <figcaption>
+              <strong>Overview of Energy Minimization Search (EMS),</strong>
+              illustrated on graph coloring. <strong>(1)</strong> Valid solutions
+              are paired with perturbed negatives. <strong>(2)</strong> Equilibrium
+              Matching and contrastive supervision learn a time-independent energy
+              function whose gradients guide refinement and whose values favor
+              valid solutions. <strong>(3)</strong> At inference, subproblem
+              energies are summed into a global objective. <strong>(4)</strong>
+              Gradient-based search on this fixed landscape refines a candidate
+              toward a valid coloring.
+            </figcaption>
+          </figure>
         </section>
 
         <footer class="related-work-footer">
