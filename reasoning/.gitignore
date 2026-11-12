@@ -1,0 +1,8 @@
+__pycache__/
+.DS_Store
+checkpoints/
+
+# Datasets are not part of the release; keep only the N-Queens generator script.
+data/**
+!data/**/
+!data/nqueens/generate_n_queens.py
