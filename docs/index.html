@@ -407,6 +407,53 @@
         font-weight: 600;
       }
 
+      .bibtex-block {
+        position: relative;
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+      }
+
+      .bibtex-block pre {
+        margin: 0;
+        padding: 1.1rem 1.25rem;
+        overflow-x: auto;
+        text-align: left;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 0.8125rem;
+        line-height: 1.65;
+        color: var(--text-main);
+      }
+
+      .copy-btn {
+        position: absolute;
+        top: 0.6rem;
+        right: 0.6rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.3rem 0.7rem;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-pill);
+        background: var(--surface);
+        color: var(--text-muted);
+        font: inherit;
+        font-size: 0.75rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.18s ease;
+      }
+
+      .copy-btn:hover {
+        border-color: #cbd5e1;
+        color: var(--text-main);
+      }
+
+      .copy-btn:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+
       .related-work-footer {
         padding: 0 0 3rem;
         text-align: center;
@@ -493,7 +540,7 @@
               <i class="fa-regular fa-file-pdf"></i>
               <span>PDF</span>
             </a>
-            <a class="btn btn-secondary" href="#">
+            <a class="btn btn-secondary" href="https://github.com/energy-based-model/ems" target="_blank" rel="noopener noreferrer">
               <i class="fa-brands fa-github"></i>
               <span>Code</span>
             </a>
@@ -678,6 +725,22 @@
           </figure>
         </section>
 
+        <section class="content-section citation-section" aria-labelledby="citation-title">
+          <h2 id="citation-title">Citation</h2>
+          <div class="bibtex-block">
+            <button class="copy-btn" type="button" aria-label="Copy BibTeX to clipboard">
+              <i class="fa-regular fa-copy" aria-hidden="true"></i>
+              <span>Copy</span>
+            </button>
+            <pre><code id="bibtex">@inproceedings{rodriguez2026ems,
+  title     = {Unifying Reasoning and Planning through Energy Minimization},
+  author    = {Rodriguez, Adrian and Kim, Angelica and Guo, Yunhui and Du, Yilun},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year      = {2026}
+}</code></pre>
+          </div>
+        </section>
+
         <footer class="related-work-footer">
           <p>
             More EBM works at
@@ -686,5 +749,44 @@
         </footer>
       </main>
     </div>
+    <script>
+      (function () {
+        var btn = document.querySelector(".copy-btn");
+        var code = document.getElementById("bibtex");
+        if (!btn || !code) return;
+        var label = btn.querySelector("span");
+        var icon = btn.querySelector("i");
+
+        function showCopied() {
+          label.textContent = "Copied";
+          icon.className = "fa-solid fa-check";
+          setTimeout(function () {
+            label.textContent = "Copy";
+            icon.className = "fa-regular fa-copy";
+          }, 1500);
+        }
+
+        function fallbackCopy(text) {
+          var area = document.createElement("textarea");
+          area.value = text;
+          area.setAttribute("readonly", "");
+          area.style.position = "absolute";
+          area.style.left = "-9999px";
+          document.body.appendChild(area);
+          area.select();
+          try { document.execCommand("copy"); showCopied(); } catch (e) {}
+          document.body.removeChild(area);
+        }
+
+        btn.addEventListener("click", function () {
+          var text = code.textContent;
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(showCopied, function () { fallbackCopy(text); });
+          } else {
+            fallbackCopy(text);
+          }
+        });
+      })();
+    </script>
   </body>
 </html>
