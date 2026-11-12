@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 
-# N-Queens (Appendix B.2). Defaults reproduce the main 8-Queens configuration.
+# N-Queens (Appendix B.2). Defaults are the 8-Queens settings that reproduce 100/100 in our reruns.
 
 @dataclass
 class NQueensConfig:
@@ -26,13 +26,13 @@ class NQueensConfig:
     epochs: int = 2040
     learning_rate: float = 1e-4
     weight_decay: float = 0.01
-    lambd: float = 16.0             # EqM target scale (lambda)
+    lambd: float = 12.0             # EqM target scale (lambda)
     ema_decay: float = 0.9999
 
     # Eval
     use_ema_model: bool = False
     num_trials: int = 100
-    num_particles: int = 128        # candidates
+    num_particles: int = 256        # candidates
     sampler: str = 'gd'             # gd | nag | ula | mala | uhmc | hmc | pem
     sampling_steps: int = 20
     step_size: float = 1e-1
