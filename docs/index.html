@@ -351,6 +351,8 @@
       .method-section img {
         display: block;
         width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
         height: auto;
       }
 
@@ -636,17 +638,11 @@
               alt="Recorded EMS refinement of nine graph colorings, nine N-Queens boards, and nine crosswords. All graph and queen examples finish solved; five crosswords finish fully correct and four retain errors."
             />
             <figcaption>
-              <strong>Reasoning through energy minimization.</strong> Selected
-              recorded trajectories for graph coloring (left), N-Queens (middle),
-              and crosswords (right). Red edges mark coloring conflicts, red queens
-              attack another queen, and red letters differ from the reference answer.
-              Pale red cells highlight conflicting queens and incorrect letters,
-              clearing as those errors resolve.
-              Blue edges and queens are non-conflicting; blue letters are correct.
-              Graph size increases down the rows; queen rows show separately trained
-              8-, 9-, and 10-Queens models. All graph and queen examples finish solved;
-              five crosswords finish fully correct and four retain errors.
-              Frames show different refinement steps across examples, not relative runtime.
+              <strong>Recorded reasoning refinement.</strong> Graph coloring, N-Queens,
+              and crosswords, left to right. Red marks conflicts or incorrect letters;
+              pale red cells clear as errors resolve. All graphs and queen boards finish
+              solved, alongside five of nine crosswords. Queen rows use separately trained
+              8-, 9-, and 10-Queens models. Timing is illustrative, not a speed comparison.
             </figcaption>
           </figure>
           <p>
@@ -657,22 +653,23 @@
             than the evaluated diffusion-based EBM baselines.
           </p>
           <figure class="reasoning-results" aria-labelledby="reasoning-results-title">
-            <h3 id="reasoning-results-title">Strong reasoning performance with fewer model evaluations</h3>
+            <h3 id="reasoning-results-title">Reasoning results across baselines</h3>
             <picture>
               <source media="(max-width: 600px)" srcset="images/reasoning_results_mobile.svg" />
               <img
                 src="images/reasoning_results.svg"
                 loading="lazy"
-                alt="DiffEBM versus EMS: mean graph-coloring conflicts 24.23 versus 3.45; valid 8-Queens boards 97 versus 100; solved 3-SAT formulas 57 versus 64.7; crossword word accuracy 50.5% versus 51.0%. EMS uses approximately 1,000, 2,000, 52, and 10,700 times fewer total model evaluations, respectively."
+                alt="Reported reasoning baselines in burgundy and EMS in navy. EMS has the fewest mean graph-coloring conflicts and the most solved 8-Queens boards and 3-SAT formulas among the shown comparisons. EMS and DiffEBM tie for the highest crossword letter accuracy at 80.4%."
               />
             </picture>
             <figcaption>
-              EMS achieves comparable or better results with fewer model evaluations
-              in these comparisons. Graph-coloring conflicts are averaged across eight
-              distributions; 3-SAT uses clause-level pretraining without full-formula
-              fine-tuning (EMS error bar: standard error over three seeds).
-              Evaluation totals include all candidates and measure model calls, not runtime.
-              Full settings and results are in the paper.
+              <strong>Reasoning results.</strong> Burgundy bars show reported baselines;
+              navy shows EMS. Graph-coloring conflicts are averaged across eight distributions
+              (lower is better); higher is better for the other tasks. The 3-SAT comparison
+              uses clause-level pretraining without full-formula fine-tuning; EMS reports
+              a three-seed mean with a standard-error bar. Evaluation reductions compare EMS
+              with DiffEBM and count model evaluations across all candidates, not runtime.
+              Full settings are in the paper.
             </figcaption>
           </figure>
         </section>
