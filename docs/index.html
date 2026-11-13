@@ -85,6 +85,18 @@
         padding: 0 1.5rem;
       }
 
+      main.container {
+        max-width: 1200px;
+      }
+
+      .hero,
+      .tldr,
+      .abstract {
+        max-width: 852px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
       /* Hero / Header Section */
       .hero {
         padding: 5.5rem 0 3.5rem;
@@ -299,7 +311,7 @@
       .overview-figure img {
         display: block;
         width: 100%;
-        max-width: 740px;
+        max-width: 100%;
         height: auto;
         margin: 0 auto;
       }
@@ -310,7 +322,7 @@
       .planning-figure figcaption,
       .planning-results figcaption,
       .method-section figcaption {
-        max-width: 780px;
+        max-width: 100%;
         margin: 1rem auto 0;
         color: var(--text-muted);
         font-size: 0.875rem;
@@ -318,7 +330,7 @@
       }
 
       .content-section {
-        max-width: 780px;
+        max-width: 100%;
         margin: 0 auto 3.5rem;
       }
 
@@ -587,9 +599,9 @@
 
         <figure class="overview-figure">
           <img
-            src="images/fig1.png"
-            width="2400"
-            height="1063"
+            src="images/fig1.gif"
+            width="1400"
+            height="680"
             alt="Energy Minimization Search unifies reasoning and planning through a fixed energy landscape. Reasoning examples include graph coloring, N-Queens, and crossword puzzles; planning examples include shortest path finding, maze solving, and trajectory stitching."
           />
           <figcaption>
