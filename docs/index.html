@@ -602,7 +602,9 @@
             candidate assignments or trajectories on the resulting landscape. The
             white dot represents an initial candidate solution. The arrows illustrate
             successive refinement toward a low-energy solution, showing how a problem
-            is solved by minimizing the candidate's energy.
+            is solved by minimizing the candidate's energy. EMS can refine multiple
+            candidates in parallel, then select the lowest-energy candidate for
+            decoding and evaluation.
           </figcaption>
         </figure>
 
@@ -627,17 +629,22 @@
           <figure class="reasoning-figure">
             <img
               class="reasoning-animation"
-              src="images/reasoning_refinement.gif"
-              width="1500"
-              height="590"
+              src="images/reasoning_3col_per_task.gif"
+              width="3800"
+              height="1260"
               loading="lazy"
-              alt="Animated refinement of candidate solutions to reasoning tasks using Energy Minimization Search."
+              alt="Recorded EMS refinement of nine graph colorings, nine N-Queens boards, and nine crosswords. All graph and queen examples finish solved; five crosswords finish fully correct and four retain errors."
             />
             <figcaption>
-              <strong>Reasoning through energy minimization.</strong> As energy
-              decreases, EMS iteratively refines candidate solutions toward
-              low-energy minima corresponding to valid solutions. A problem is
-              solved when the refined candidate satisfies its constraints.
+              <strong>Reasoning through energy minimization.</strong> Selected
+              recorded trajectories for graph coloring (left), N-Queens (middle),
+              and crosswords (right). Red edges mark coloring conflicts, red queens
+              attack another queen, and red letters differ from the reference answer.
+              Blue edges and queens are non-conflicting; blue letters are correct.
+              Graph size increases down the rows; queen rows show separately trained
+              8-, 9-, and 10-Queens models. All graph and queen examples finish solved;
+              five crosswords finish fully correct and four retain errors.
+              Frames show different refinement steps across examples, not relative runtime.
             </figcaption>
           </figure>
           <p>
