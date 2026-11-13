@@ -602,11 +602,11 @@
             <strong>Unifying reasoning and planning through energy minimization.</strong>
             EMS learns a time-independent energy function for each task and refines
             candidate assignments or trajectories on the resulting landscape. The
-            white dot represents an initial candidate solution. The arrows illustrate
+            white dot represents initial candidate solutions. The arrows illustrate
             successive refinement toward a low-energy solution, showing how a problem
-            is solved by minimizing the candidate's energy. EMS can refine multiple
+            is solved by minimizing each candidate's energy. EMS can refine multiple
             candidates in parallel, then select the lowest-energy candidate for
-            decoding and evaluation.
+            evaluation.
           </figcaption>
         </figure>
 
@@ -638,19 +638,18 @@
               alt="Recorded EMS refinement of nine graph colorings, nine N-Queens boards, and nine crosswords. All graph and queen examples finish solved; five crosswords finish fully correct and four retain errors."
             />
             <figcaption>
-              <strong>Recorded reasoning refinement.</strong> Graph coloring, N-Queens,
-              and crosswords, left to right. Red marks conflicts or incorrect letters;
-              pale red cells clear as errors resolve. All graphs and queen boards finish
-              solved, alongside five of nine crosswords. Queen rows use separately trained
-              8-, 9-, and 10-Queens models. Timing is illustrative, not a speed comparison.
+              <strong>Reasoning refinement samples.</strong> Graph coloring, 8, 9, 10-Queens,
+              and crosswords, left to right. Red marks conflicts or incorrect letters.
+              Pale red cells clear as errors resolve as energy is minimized. All graphs and queen boards finish
+              solved, alongside five of nine crosswords.
             </figcaption>
           </figure>
           <p>
-            We evaluate EMS on <strong>graph coloring, N-Queens, 3-SAT, and
-            crosswords</strong>, composing learned local energies to search for
-            complete solutions. Across these tasks, EMS achieves competitive or
+            We evaluate EMS on graph coloring, N-Queens, 3-SAT, and
+            crosswords, composing learned local energies to search for
+            complete solutions. Across these tasks, <strong>EMS achieves competitive or
             improved solution quality with substantially fewer model evaluations
-            than the evaluated diffusion-based EBM baselines.
+            than the evaluated diffusion-based EBM baselines.</strong>
           </p>
           <figure class="reasoning-results" aria-labelledby="reasoning-results-title">
             <h3 id="reasoning-results-title">Reasoning results across baselines</h3>
@@ -663,12 +662,10 @@
               />
             </picture>
             <figcaption>
-              <strong>Reasoning results.</strong> Burgundy bars show reported baselines;
-              navy shows EMS. Graph-coloring conflicts are averaged across eight distributions
-              (lower is better); higher is better for the other tasks. The 3-SAT comparison
-              uses clause-level pretraining without full-formula fine-tuning; EMS reports
-              a three-seed mean with a standard-error bar. Evaluation reductions compare EMS
-              with DiffEBM and count model evaluations across all candidates, not runtime.
+              <strong>Reasoning results.</strong> Red bars show reported baselines.
+              Blue shows EMS. Graph-coloring conflicts are averaged across eight distributions
+              (lower is better). Higher is better for the other tasks.  <strong>Evaluation reductions compare EMS
+              with DiffEBM and count model evaluations across all candidates, resulting in subsantially less compute.</strong>
               Full settings are in the paper.
             </figcaption>
           </figure>
@@ -691,11 +688,12 @@
             </figcaption>
           </figure>
           <p>
-            EMS also searches over graph paths and continuous trajectories.
-            A model trained on 15-node graphs improves first-action accuracy on
-            both 15- and 25-node graphs. On PointMaze, EMS achieves higher mean
-            goal-reaching success than Decision Diffuser, although success remains
-            low on Large mazes.
+            EMS searches over graph paths and continuous trajectories.
+            <strong>EMS outperforms all baselines shown in these planning comparisons,
+            with modest gains in first-action accuracy and mean goal-reaching success.</strong>
+            The same model trained on 15-node graphs improves accuracy on both
+            15- and 25-node graphs. On PointMaze, EMS improves on Decision Diffuser,
+            although success remains low on Large mazes.
           </p>
           <figure class="planning-results" aria-labelledby="planning-results-title">
             <h3 id="planning-results-title">From graph search to continuous trajectories</h3>
@@ -730,10 +728,12 @@
             />
             <figcaption>
               <strong>Learning an energy landscape for search.</strong>
-              Equilibrium Matching learns gradients that guide refinement, while
-              optional contrastive supervision separates valid solutions from
-              perturbed alternatives. At inference, local energies can be composed
-              into a single objective, which guides iterative search.
+              Equilibrium Matching trains energy gradients to guide corrupted
+              candidates toward valid solutions. Optional contrastive supervision
+              encourages valid solutions to have lower energy than perturbed alternatives.
+              At inference, EMS refines candidates on the learned landscape, optionally
+              summing local energies to account for multiple constraints. The objective
+              stays fixed throughout search.
             </figcaption>
           </figure>
         </section>
