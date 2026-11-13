@@ -658,9 +658,11 @@
           <figure class="reasoning-results" aria-labelledby="reasoning-results-title">
             <h3 id="reasoning-results-title">Reasoning results across baselines</h3>
             <picture>
-              <source media="(max-width: 600px)" srcset="images/reasoning_results_mobile.svg" />
+              <source media="(prefers-reduced-motion: reduce) and (max-width: 600px)" srcset="images/reasoning_results_mobile.svg" />
+              <source media="(prefers-reduced-motion: reduce)" srcset="images/reasoning_results.svg" />
+              <source media="(max-width: 600px)" srcset="images/reasoning_results_mobile.gif" />
               <img
-                src="images/reasoning_results.svg"
+                src="images/reasoning_results.gif"
                 loading="lazy"
                 alt="Reported reasoning baselines in burgundy and EMS in navy. EMS has the fewest mean graph-coloring conflicts and the most solved 8-Queens boards and 3-SAT formulas among the shown comparisons. EMS and DiffEBM tie for the highest crossword letter accuracy at 80.4%."
               />
@@ -702,9 +704,11 @@
           <figure class="planning-results" aria-labelledby="planning-results-title">
             <h3 id="planning-results-title">From graph search to continuous trajectories</h3>
             <picture>
-              <source media="(max-width: 600px)" srcset="images/planning_results_mobile.svg" />
+              <source media="(prefers-reduced-motion: reduce) and (max-width: 600px)" srcset="images/planning_results_mobile.svg" />
+              <source media="(prefers-reduced-motion: reduce)" srcset="images/planning_results.svg" />
+              <source media="(max-width: 600px)" srcset="images/planning_results_mobile.gif" />
               <img
-                src="images/planning_results.svg"
+                src="images/planning_results.gif"
                 loading="lazy"
                 alt="Planning baselines in burgundy and EMS in navy. Path-finding accuracy for Diffusion, IREM, IRED, and EMS is 45.2, 90.4, 92.6, and 96.3 percent on 15-node graphs, and 46.9, 88.4, 91.9, and 93.1 percent on 25-node graphs. Decision Diffuser versus EMS maze success is 30.00 versus 33.67 percent on Medium and 0.00 versus 8.86 percent on Large."
               />
