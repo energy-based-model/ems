@@ -340,6 +340,10 @@
         line-height: 1.8;
       }
 
+      .content-section > p + figure {
+        margin-top: 1.25rem;
+      }
+
       .content-section p + p {
         margin-top: 1rem;
       }
@@ -556,7 +560,7 @@
         <section class="tldr" aria-labelledby="tldr-title">
           <h2 id="tldr-title">TL;DR</h2>
           <p>
-            <strong>Energy Minimization Search (EMS)</strong> learns a single fixed energy
+            Energy Minimization Search (EMS) learns a single fixed energy
             landscape for each task and solves problems by searching it. The same training framework supports
             reasoning and planning, with additional inference compute allocated to
             more refinement steps or more candidate solutions. On reasoning benchmarks, EMS matches or outperforms the evaluated diffusion-based
@@ -576,8 +580,8 @@
             that can be optimized with additional computation. However, existing
             methods rely on specialized training and inference procedures, from
             differentiating through iterative optimization to annealing across
-            noise-dependent energy landscapes. We introduce <strong>Energy Minimization
-            Search (EMS)</strong>, a unified framework for reasoning and planning through
+            noise-dependent energy landscapes. We introduce Energy Minimization
+            Search (EMS), a unified framework for reasoning and planning through
             a shared training objective and time-invariant energy minimization. EMS
             combines Equilibrium Matching with contrastive supervision to learn an
             energy function for each task, using the energy values to evaluate
@@ -618,16 +622,23 @@
             Reasoning and planning both require finding solutions that satisfy
             problem conditions. Prior diffusion-based EBMs refine candidates across
             a sequence of noise-conditioned energy landscapes, which can require
-            many model evaluations at inference. <strong>EMS instead learns a fixed energy
+            many model evaluations at inference. EMS instead learns a fixed energy
             function for each task:
             energy values score candidates, while gradients guide their
-            refinement</strong>. The same training framework supports both domains,
+            refinement. The same training framework supports both domains,
             and the search method and compute budget can change without retraining.
           </p>
         </section>
 
         <section class="content-section" aria-labelledby="reasoning-title">
           <h2 id="reasoning-title">Reasoning</h2>
+          <p>
+            We evaluate EMS on graph coloring, N-Queens, 3-SAT, and
+            crosswords, composing learned local energies to search for
+            complete solutions. Across these tasks, EMS achieves competitive or
+            improved solution quality with substantially fewer model evaluations
+            than the evaluated diffusion-based EBM baselines.
+          </p>
           <figure class="reasoning-figure">
             <img
               class="reasoning-animation"
@@ -644,13 +655,6 @@
               solved, alongside five of nine crosswords.
             </figcaption>
           </figure>
-          <p>
-            We evaluate EMS on graph coloring, N-Queens, 3-SAT, and
-            crosswords, composing learned local energies to search for
-            complete solutions. Across these tasks, <strong>EMS achieves competitive or
-            improved solution quality with substantially fewer model evaluations
-            than the evaluated diffusion-based EBM baselines.</strong>
-          </p>
           <figure class="reasoning-results" aria-labelledby="reasoning-results-title">
             <h3 id="reasoning-results-title">Reasoning results across baselines</h3>
             <picture>
@@ -664,8 +668,8 @@
             <figcaption>
               <strong>Reasoning results.</strong> Red bars show reported baselines.
               Blue shows EMS. Graph-coloring conflicts are averaged across eight distributions
-              (lower is better). Higher is better for the other tasks.  <strong>Evaluation reductions compare EMS
-              with DiffEBM and count model evaluations across all candidates, resulting in subsantially less compute.</strong>
+              (lower is better). Higher is better for the other tasks.  Evaluation reductions compare EMS
+              with DiffEBM and count model evaluations across all candidates, resulting in subsantially less compute.
               Full settings are in the paper.
             </figcaption>
           </figure>
@@ -673,6 +677,14 @@
 
         <section class="content-section" aria-labelledby="planning-title">
           <h2 id="planning-title">Planning</h2>
+          <p>
+            EMS searches over graph paths and continuous trajectories.
+            EMS outperforms all baselines shown in these planning comparisons,
+            with modest gains in first-action accuracy and mean goal-reaching success.
+            The same model trained on 15-node graphs improves accuracy on both
+            15- and 25-node graphs. On PointMaze, EMS improves on Decision Diffuser,
+            although success remains low on Large mazes.
+          </p>
           <figure class="planning-figure">
             <img
               src="images/planning_refinement.gif"
@@ -687,14 +699,6 @@
               valid plans.
             </figcaption>
           </figure>
-          <p>
-            EMS searches over graph paths and continuous trajectories.
-            <strong>EMS outperforms all baselines shown in these planning comparisons,
-            with modest gains in first-action accuracy and mean goal-reaching success.</strong>
-            The same model trained on 15-node graphs improves accuracy on both
-            15- and 25-node graphs. On PointMaze, EMS improves on Decision Diffuser,
-            although success remains low on Large mazes.
-          </p>
           <figure class="planning-results" aria-labelledby="planning-results-title">
             <h3 id="planning-results-title">From graph search to continuous trajectories</h3>
             <picture>
