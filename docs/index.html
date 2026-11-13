@@ -704,13 +704,16 @@
               <img
                 src="images/planning_results.svg"
                 loading="lazy"
-                alt="IRED versus EMS first-action accuracy: 92.6% versus 96.3% on 15-node graphs, and 91.9% versus 93.1% on 25-node graphs. Decision Diffuser versus EMS goal-reaching success: 30.00% versus 33.67% on Medium PointMaze, and 0.00% versus 8.86% on Large PointMaze."
+                alt="Planning baselines in burgundy and EMS in navy. Path-finding accuracy for Diffusion, IREM, IRED, and EMS is 45.2, 90.4, 92.6, and 96.3 percent on 15-node graphs, and 46.9, 88.4, 91.9, and 93.1 percent on 25-node graphs. Decision Diffuser versus EMS maze success is 30.00 versus 33.67 percent on Medium and 0.00 versus 8.86 percent on Large."
               />
             </picture>
             <figcaption>
-              Graph results measure first-action accuracy, not complete-path execution.
-              Maze results report mean success
-              across five seeds, with standard-deviation error bars. Full results are in the paper.
+              <strong>Planning results.</strong> Burgundy bars show baselines; navy shows EMS.
+              Improvements are percentage-point gains over IRED for path finding and
+              Decision Diffuser (DD) for mazes. Graph results measure first-action accuracy,
+              not complete-path execution; EMS uses a larger search budget than IRED.
+              Maze results show five-seed means with standard-deviation error bars.
+              Full settings are in the paper.
             </figcaption>
           </figure>
         </section>
