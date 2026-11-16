@@ -6,10 +6,11 @@ Code for *Unifying Reasoning and Planning through Energy Minimization* (NeurIPS 
 
 ## Setup
 
-The code was run with Python 3.10.
+The code was run with Python 3.10. Each part has its own requirements:
 
 ```bash
 pip install -r reasoning/requirements.txt
+pip install -r planning/ired-eqm/requirements.txt
 ```
 
 ## Reasoning
@@ -87,9 +88,47 @@ python eval_sat.py --seed 13
 
 Results can differ slightly depending on the GPU, and the best target scale (`--lambd`) can shift with it. If a run falls a little short of the paper, a few more refinement steps (`--sampling_steps`) or candidates (`--num_particles`) usually close the gap. For example, our retrained 8-Queens model (λ = 12) solves all 100 boards with 256 candidates, a quarter of DiffEBM's 1,024.
 
+## Planning
+
+### Shortest Path
+
+Run every command from the `planning/ired-eqm/` directory:
+
+```bash
+cd planning/ired-eqm
+```
+
+#### Data
+
+The graphs are generated locally with IRED's generator (15-node graphs for training, 25-node graphs for generalization):
+
+```bash
+python gen_planning_dataset.py shortest-path-15 --size 100000
+python gen_planning_dataset.py shortest-path-25 --size 10000
+```
+
+#### Training and Evaluation
+
+```bash
+python train.py
+python infer.py --ckpt results/ds_shortest-path-15-1d/model_gnn-conv-1d-v2_eqm_lam1.0_bs512/model-90.pt
+```
+
+The defaults are the paper's settings. Training evaluates on both graph sizes as IRED does and saves a checkpoint every 1,000 updates; the paper uses `model-90.pt`. `first_action_accuracy_2` is the reported metric.
+
+`infer.py` seeds the starting noise (`--seed`, default 0), so repeated runs on the same machine give the same numbers. To try other starting noise:
+
+```bash
+python infer.py --ckpt <checkpoint> --seed 1
+```
+
+Results can still differ from the paper by about a point. The training-time evaluation does not seed its starting noise, and each evaluation scores 1,408 graphs per graph size, so different starting noise changes which minimum some graphs end in. The graph generator is not seeded either, so each generated dataset has different graphs, and results can also vary with the GPU.
+
 ## Acknowledgements
 
-The task data, encodings, and evaluation protocols follow [Oarga & Du (2025)](https://arxiv.org/abs/2510.20607). The crossword puzzles are from Tree of Thoughts (Yao et al., 2023). The 3-SAT test formulas are from SATLIB.
+The reasoning task data, encodings, and evaluation protocols follow [Oarga & Du (2025)](https://arxiv.org/abs/2510.20607). The crossword puzzles are from Tree of Thoughts (Yao et al., 2023). The 3-SAT test formulas are from SATLIB.
+
+The shortest-path code builds on [IRED](https://github.com/yilundu/ired_code_release) (Du et al., 2024), including its graph generator, backbone, negatives, training loop, and evaluation metrics. IRED's training loop derives from [denoising-diffusion-pytorch](https://github.com/lucidrains/denoising-diffusion-pytorch) by Phil Wang, released under the MIT License (`planning/ired-eqm/LICENSE`).
 
 ## Citation
 
