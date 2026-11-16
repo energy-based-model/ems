@@ -1,0 +1,8 @@
+__pycache__/
+.DS_Store
+
+# Generated graphs, checkpoints, and run outputs are not part of the release.
+data/
+results/
+*.log
+infer_*.json
